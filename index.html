@@ -299,8 +299,12 @@
       }
 
       var randomItem = data.backgrounds[getRandomInt(1, data.backgrounds.length)]
-      document.body.style.backgroundImage = "url(backgrounds/" + randomItem.filename + ")";
-      document.body.className = "visible"
+      var img = new Image()
+      img.src = "backgrounds/" + randomItem.filename
+      img.onload = function() {
+        document.body.style.backgroundImage = "url(" + img.src +")";
+        document.body.className = "visible"
+      }
 
       // we can't do that, history API is limited to current domain
       // well we don't have a domain for file:/// so we are screwed...
