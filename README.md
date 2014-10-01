@@ -6,7 +6,7 @@
 
 ### Demo
 
-Set [putaindecode.github.io/pretty-new-tab](http://putaindecode.github.io/pretty-new-tab/) as a url for your new tab/window.
+Set [putaindecode.io/pretty-new-tab](http://putaindecode.io/pretty-new-tab/) as a url for your new tab/window.
 
 ### Local (recommanded + faster)
 
