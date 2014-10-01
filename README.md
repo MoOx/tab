@@ -12,6 +12,6 @@ Set [kud.io/pretty-new-tab](http://kud.io/pretty-new-tab/) as a url for your new
 
     git clone https://github.com/kud/pretty-new-tab.git
 
-### Firefox
+#### Firefox
 
 Type `about:config` and set `browser.newtab.url` to `file:///YOUR/PATH/TO/pretty-new-tab/index.html`
