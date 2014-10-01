@@ -1,17 +1,17 @@
-# Nice New Tab
+# Pretty New Tab
 
 > Get a nice picture each time you open a new tab
 
 ## Usage
 
-### Online demo
+### Demo
 
-Set [kud.io/propulsion](http://kud.io/propulsion/) as an url for your new tabs/windows.
+Set [kud.io/pretty-new-tab](http://kud.io/pretty-new-tab/) as a url for your new tab/window.
 
 ### Local (recommanded + faster)
 
-    git clone https://github.com/kud/propulsion.git
+    git clone https://github.com/kud/pretty-new-tab.git
 
 ### Firefox
 
-Type `about:config` in a new tab, then set `browser.newtab.url` to `file:///YOUR/PATH/TO/propulsion/index.html`
+Type `about:config` and set `browser.newtab.url` to `file:///YOUR/PATH/TO/pretty-new-tab/index.html`
