@@ -58,12 +58,13 @@
        * This make code easier to read.
        */
       window.onload = function() {
-        loadBackground(backgrounds[getRandomInt(1, backgrounds.length)], function(item, img) {
+        loadBackground(getRandomBackground(), function(item, img) {
           console.log(item, img)
           document.body.style.backgroundImage = "url(" + img.src +")"
           document.body.className = "visible"
 
           startClock()
+          startbackgroundUpdater()
 
           // now page is ok, we take some times to load other ref
           preloadAllBackgrounds()
@@ -100,6 +101,25 @@
       }
 
       /**
+       * start periodic background updates
+       */
+      function startbackgroundUpdater() {
+        var updateInterval = 10000
+
+        window.setInterval(function() {
+          loadBackground(getRandomBackground(), function(item, img) {
+            console.log(item, img)
+            document.body.className = "hidden"
+
+            window.setTimeout(function() {
+              document.body.style.backgroundImage = "url(" + img.src +")"
+              document.body.className = "visible"
+            }, 1000)
+          })
+        }, updateInterval)
+      }
+
+      /**
        * Returns a random integer between min (included) and max (excluded)
        *
        * Using Math.round() will give you a non-uniform distribution
@@ -107,6 +127,13 @@
        */
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      /**
+       * get a random background item
+       */
+      function getRandomBackground() {
+        return backgrounds[getRandomInt(1, backgrounds.length)]
       }
 
       /**
