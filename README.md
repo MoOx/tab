@@ -6,11 +6,11 @@
 
 ### Demo
 
-Set [kud.io/pretty-new-tab](http://kud.io/pretty-new-tab/) as a url for your new tab/window.
+Set [putaindecode.github.io/pretty-new-tab](http://putaindecode.github.io/pretty-new-tab/) as a url for your new tab/window.
 
 ### Local (recommanded + faster)
 
-    git clone https://github.com/kud/pretty-new-tab.git
+    git clone https://github.com/putaindecode/pretty-new-tab.git
 
 #### Firefox
 
