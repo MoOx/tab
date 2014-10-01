@@ -31,6 +31,18 @@
         opacity: 0;
         transition: visibility 0s .5s, opacity .5s linear;
       }
+
+      .clock {
+        position: absolute;
+        color: white;
+        font-size: 1em;
+        font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+        padding: 1em;
+        line-height: 1em;
+        letter-spacing: 0.05em;
+        cursor: default;
+        text-shadow: 0 0 5px black;
+      }
     </style>
   </head>
   <body class="hidden">
@@ -48,6 +60,8 @@
           console.log(item, img)
           document.body.style.backgroundImage = "url(" + img.src +")"
           document.body.className = "visible"
+
+          startClock()
 
           // now page is ok, we take some times to load other ref
           preloadAllBackgrounds()
@@ -91,6 +105,26 @@
        */
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      /**
+       * What time is it?
+       */
+      function startClock() {
+        var clock = document.createElement('div');
+        clock.setAttribute('class', 'clock')
+
+        var updateClock = function () {
+          var date = new Date()
+          var hours = date.getHours().toString()
+          var minutes = date.getMinutes().toString()
+          clock.innerHTML = (hours.length < 2 ? '0' : '') + hours + ':' + (minutes.length < 2 ? '0' : '') + minutes
+        }
+
+        window.setInterval(updateClock, 60000)
+        updateClock()
+
+        document.body.appendChild(clock)
       }
 
       /**
