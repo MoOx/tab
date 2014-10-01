@@ -8,7 +8,7 @@
 
 Set [kud.io/propulsion](http://kud.io/propulsion/) as an url for your new tabs/windows.
 
-### Local (recommanded + fasterÓ)
+### Local (recommanded + faster)
 
     git clone https://github.com/kud/propulsion.git
 
