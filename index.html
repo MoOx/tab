@@ -60,6 +60,12 @@
         // history.pushState({}, "", "");
       }
 
+      /**
+       * load a background
+       *
+       * @param {Object}   item     background object to load
+       * @param {Function} callback callback to execute when image is loaded. First arg is the item itself, 2nd is the image object.
+       */
       function loadBackground(item, callback) {
         var img = new Image()
         img.src = item.url
@@ -68,6 +74,9 @@
         }
       }
 
+      /**
+       * preload all backgrounds
+       */
       function preloadAllBackgrounds() {
         backgrounds.forEach(function(item) {
           loadBackground(item, function(item) { console.log("item preloaded", item)})
