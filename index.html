@@ -32,7 +32,16 @@
         transition: visibility 0s .5s, opacity .5s linear;
       }
 
-      .clock {
+      .PrettyNewTab-corner {
+        position: absolute;
+      }
+
+        .PrettyNewTab-corner--top-right { top: 0; right: 0 }
+        .PrettyNewTab-corner--bottom-right { bottom: 0; right: 0 }
+        .PrettyNewTab-corner--top-left { top: 0; left: 0 }
+        .PrettyNewTab-corner--bottom-left { bottom: 0; left: 0 }
+
+      .PrettyNewTab-time {
         position: absolute;
         color: white;
         font-size: 1.5em;
@@ -140,8 +149,8 @@
        * What time is it?
        */
       function startClock() {
-        var clock = document.createElement('div');
-        clock.setAttribute('class', 'clock')
+        var clock = document.createElement('time');
+        clock.setAttribute('class', 'PrettyNewTab-time PrettyNewTab-corner PrettyNewTab-corner--top-right')
 
         var updateClock = function () {
           var date = new Date()
