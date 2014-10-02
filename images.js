@@ -220,5 +220,11 @@ var backgrounds = [
       "source": "Adrian Simionov",
       "sourceUrl": "http://500px.com/photo/63850509/the-place-of-no-words-by-adrian-simionov",
       "title": "Queenstown, New Zealand"
+  },
+  {
+      "url": "backgrounds/39.jpg",
+      "source": "Trey Ratcliff",
+      "sourceUrl": "http://chromecastbg.alexmeub.com/images/orig_Lorne-Road.jpg",
+      "title": ""
   }
 ]
