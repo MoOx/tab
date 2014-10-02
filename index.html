@@ -105,11 +105,16 @@
         font-weight: 200;
       }
 
+      .PrettyNewTab-backgroundCredit {
+        text-decoration: none
+      }
+
       .PrettyNewTab-footer {
 
       }
+
         .PrettyNewTab-footer .PrettyNewTab-footer-txt,
-        .PrettyNewTab-footer a {
+        .PrettyNewTab-footer-link {
           -webkit-transition: all .5s;
           transition: all .5s;
         }
@@ -118,13 +123,13 @@
 
           .PrettyNewTab-footer:hover .PrettyNewTab-footer-txt { opacity: .5; }
 
-        .PrettyNewTab-footer a {
+        .PrettyNewTab-footer-link {
           opacity: .3;
           text-decoration: none;
         }
 
-          .PrettyNewTab-footer:hover a { opacity: .6 }
-          .PrettyNewTab-footer a:hover { opacity: .75 }
+          .PrettyNewTab-footer:hover .PrettyNewTab-footer-link { opacity: .6 }
+          .PrettyNewTab-footer-link:hover { opacity: .75 }
 
       .PrettyNewTab-separator {
         font-size: .8em;
@@ -140,19 +145,19 @@
       <time class="js-PrettyNewTab-time PrettyNewTab-time PrettyNewTab-pin PrettyNewTab-pin--top-right"></time>
 
       <footer class="small PrettyNewTab-footer">
-        <div class="js-PrettyNewTab-credit PrettyNewTab-pin PrettyNewTab-pin--bottom-left"></div>
-
         <div class="PrettyNewTab-pin PrettyNewTab-pin--bottom">
           <span class="PrettyNewTab-footer-txt">Made with ♥︎ by</span>
-          <a href="http://putaindecode.io">putaindecode</a>
+          <a class="PrettyNewTab-footer-link"href="http://putaindecode.io">putaindecode</a>
         </div>
 
+        <a class="js-PrettyNewTab-backgroundCredit PrettyNewTab-backgroundCredit PrettyNewTab-pin PrettyNewTab-pin--bottom-left"></a>
+
         <div class="PrettyNewTab-pin PrettyNewTab-pin--bottom-right">
-          <a href="https://github.com/putaindecode/pretty-new-tab">Source Code</a>
+          <a class="PrettyNewTab-footer-link" href="https://github.com/putaindecode/pretty-new-tab">Source Code</a>
           <span class="PrettyNewTab-separator">|</span>
-          <a href="https://github.com/putaindecode/pretty-new-tab/issues">Contribute</a>
+          <a class="PrettyNewTab-footer-link" href="https://github.com/putaindecode/pretty-new-tab/issues">Contribute</a>
           <span class="PrettyNewTab-separator">|</span>
-          <a href="https://github.com/putaindecode/pretty-new-tab/issues/new">Report a bug</a>
+          <a class="PrettyNewTab-footer-link" href="https://github.com/putaindecode/pretty-new-tab/issues/new">Report a bug</a>
         </div>
       </footer>
     </div>
@@ -163,6 +168,7 @@
       var updateInterval = 15 //sec
 
       var backgroundEl = document.querySelector(".js-PrettyNewTab-background")
+      var backgroundCreditsEl = document.querySelector(".js-PrettyNewTab-backgroundCredit")
 
       /**
        * RUN THE SHIT
@@ -193,9 +199,13 @@
       function loadRandomBackground(callback) {
         loadBackground(getRandomBackground(), function(item, img) {
           backgroundEl.classList.add("PrettyNewTab-background--hidden")
+          backgroundCreditsEl.innerHTML = ""
           onNextTransitionEnd(backgroundEl, function() {
-            backgroundEl.style.backgroundImage = "url(" + img.src +")"
+            backgroundEl.style.backgroundImage = "url(" + item.url +")"
             backgroundEl.classList.remove("PrettyNewTab-background--hidden")
+            backgroundCreditsEl.setAttribute("href", item.sourceUrl)
+            backgroundCreditsEl.setAttribute("title", "Credits: " + item.source)
+            backgroundCreditsEl.innerHTML = item.title
           })
           if (callback) {
             callback()
@@ -542,7 +552,7 @@
           "url": "backgrounds/35.jpg",
           "impressionUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli=10918568&PluID=0&ord=[timestamp]&rtu=-1",
           "shutterstockPromo": true,
-          "source": "Photo by <img src='img/shutterstock.png'>",
+          "source": "Shutterstock",
           "sourceUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=10918568&PluID=0&ord=[timestamp]",
           "title": "Forest Road"
       },
@@ -550,7 +560,7 @@
           "url": "backgrounds/36.jpg",
           "impressionUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli=10918570&PluID=0&ord=[timestamp]&rtu=-1",
           "shutterstockPromo": true,
-          "source": "Photo by <img src='img/shutterstock.png'>",
+          "source": "Shutterstock",
           "sourceUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=10918570&PluID=0&ord=[timestamp]",
           "title": "Boating"
       },
@@ -558,7 +568,7 @@
           "url": "backgrounds/37.jpg",
           "impressionUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli=10918571&PluID=0&ord=[timestamp]&rtu=-1",
           "shutterstockPromo": true,
-          "source": "Photo by <img src='img/shutterstock.png'>",
+          "source": "Shutterstock",
           "sourceUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=10918571&PluID=0&ord=[timestamp]",
           "title": "On the Beach"
       },
@@ -566,7 +576,7 @@
           "url": "backgrounds/38.jpg",
           "impressionUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli=10918572&PluID=0&ord=[timestamp]&rtu=-1",
           "shutterstockPromo": true,
-          "source": "Photo by <img src='img/shutterstock.png'>",
+          "source": "Shutterstock",
           "sourceUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=10918572&PluID=0&ord=[timestamp]",
           "title": "National Bison Range, Montana, USA"
       }]
