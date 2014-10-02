@@ -78,6 +78,16 @@
         opacity: 0;
       }
 
+      .PrettyNewTab-backgroundOverlay {
+        background-color: transparent;
+        background-image: radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 50%,
+          rgba(0, 0, 0, 1) 100%
+        );
+      }
+
       .PrettyNewTab-pin {
         position: absolute;
 
@@ -140,6 +150,7 @@
   </head>
   <body class="hidden">
     <div class="js-PrettyNewTab-background PrettyNewTab-stretch PrettyNewTab-background"></div>
+    <div class="PrettyNewTab-stretch PrettyNewTab-backgroundOverlay"></div>
 
     <div class="PrettyNewTab-stretch PrettyNewTab-ui">
       <time class="js-PrettyNewTab-time PrettyNewTab-time PrettyNewTab-pin PrettyNewTab-pin--top-right"></time>
