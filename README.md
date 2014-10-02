@@ -11,6 +11,10 @@ Set [putaindecode.io/pretty-new-tab](http://putaindecode.io/pretty-new-tab/) as 
 ### Local (recommended + faster)
 
     git clone https://github.com/putaindecode/pretty-new-tab.git
+    mv images.js.sample images.js
+
+    # Optional
+    # Customize the images in images.js
 
 #### Firefox
 
