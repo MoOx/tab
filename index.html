@@ -17,6 +17,32 @@
     <div class="putainde-Tab-stretch putainde-Tab-ui">
       <time class="js-putainde-Tab-time putainde-Tab-time putainde-Tab-pin putainde-Tab-pin--top-right"></time>
 
+      <div class="js-putainde-Tab-settings putainde-Tab-settings putainde-Tab-settings">
+        <button class="js-putainde-Tab-settings-close reset-Button putainde-Tab-settings-close" href="#">✕</button>
+        <ul>
+          <li>
+            <input type="checkbox" id="putainde-Tab-settings-overlay" />
+            <label for="putainde-Tab-settings-overlay">Radial overlay</label>
+          </li>
+          <li>
+            <input type="checkbox" id="putainde-Tab-settings-cycleBackgrounds" />
+            <label for="putainde-Tab-settings-cycleBackgrounds">Cycle backgrounds</label>
+          </li>
+          <li>
+            <label for="putainde-Tab-settings-cycleBackgrounds">Cycle interval</label>
+            <input type="text" id="putainde-Tab-settings-cycleInterval" value="30s" size="2" />
+          </li>
+          <li>
+            <input type="checkbox" id="putainde-Tab-settings-imageList" value="" />
+            <label for="putainde-Tab-settings-imageList">Use external image list</label>
+          </li>
+          <li>
+            <label for="putainde-Tab-settings-imageListUrl">Image list URL</label>
+            <input type="text" id="putainde-Tab-settings-imageSource" value="" />
+          </li>
+        </ul>
+      </div>
+
       <footer class="small putainde-Tab-footer">
         <div class="putainde-Tab-pin putainde-Tab-pin--bottom">
           <span class="putainde-Tab-footer-txt">Made with ♥︎ by</span>
@@ -26,12 +52,14 @@
         <a class="js-putainde-Tab-backgroundCredit putainde-Tab-backgroundCredit putainde-Tab-pin putainde-Tab-pin--bottom-left"></a>
 
         <div class="putainde-Tab-pin putainde-Tab-pin--bottom-right">
-          <!-- http://iconmonstr.com/gear-icon/ -->
-          <!-- ref above is icon for futur prefs ui -->
-
           <button class="reset-Button putainde-Tab-footer-link putainde-Tab-button putainde-Tab-button--icon js-putainde-Tab-changeBackground">
             <!-- http://iconmonstr.com/refresh-3-icon/ -->
             <svg class="putainde-Tab-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"> <path id="refresh-3-icon" d="M373.223,142.573l-37.252,37.253c-20.225-20.224-48.162-32.731-79.021-32.731 c-61.719,0-111.752,50.056-111.752,111.776c0,0.016,0-0.016,0,0h43.412l-69.342,69.315L50,258.871h42.514c0-0.008,0,0.006,0,0 c0-90.816,73.621-164.46,164.436-164.46C302.357,94.411,343.467,112.816,373.223,142.573z M462,253.129l-69.268-69.316 l-69.342,69.316h43.412c0,0.016,0-0.017,0,0c0,61.72-50.033,111.776-111.752,111.776c-30.859,0-58.797-12.508-79.021-32.731 l-37.252,37.253c29.758,29.757,70.867,48.162,116.273,48.162c90.814,0,164.436-73.644,164.436-164.459c0-0.007,0,0.008,0,0H462z"/></svg>
+          </button>
+
+          <button class="reset-Button putainde-Tab-footer-link putainde-Tab-button putainde-Tab-button--icon js-putainde-Tab-toggleSettings">
+            <!-- http://iconmonstr.com/gear-icon/ -->
+            <svg class="putainde-Tab-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"> <path id="gear-icon" d="M462,283.742v-55.485l-29.981-10.662c-11.431-4.065-20.628-12.794-25.274-24.001c-0.002-0.004-0.004-0.009-0.006-0.013c-4.659-11.235-4.333-23.918,0.889-34.903l13.653-28.724l-39.234-39.234l-28.72,13.652c-10.979,5.219-23.68,5.546-34.908,0.889c-0.005-0.002-0.01-0.003-0.014-0.005c-11.215-4.65-19.933-13.834-24-25.273L283.741,50h-55.484l-10.662,29.981c-4.065,11.431-12.794,20.627-24.001,25.274c-0.005,0.002-0.009,0.004-0.014,0.005c-11.235,4.66-23.919,4.333-34.905-0.889l-28.723-13.653l-39.234,39.234l13.653,28.721c5.219,10.979,5.545,23.681,0.889,34.91c-0.002,0.004-0.004,0.009-0.006,0.013c-4.649,11.214-13.834,19.931-25.271,23.998L50,228.257v55.485l29.98,10.661c11.431,4.065,20.627,12.794,25.274,24c0.002,0.005,0.003,0.01,0.005,0.014c4.66,11.236,4.334,23.921-0.888,34.906l-13.654,28.723l39.234,39.234l28.721-13.652c10.979-5.219,23.681-5.546,34.909-0.889c0.005,0.002,0.01,0.004,0.014,0.006c11.214,4.649,19.93,13.833,23.998,25.271L228.257,462h55.484l10.595-29.79c4.103-11.538,12.908-20.824,24.216-25.525c0.005-0.002,0.009-0.004,0.014-0.006c11.127-4.628,23.694-4.311,34.578,0.863l28.902,13.738l39.234-39.234l-13.66-28.737c-5.214-10.969-5.539-23.659-0.886-34.877c0.002-0.005,0.004-0.009,0.006-0.014c4.654-11.225,13.848-19.949,25.297-24.021L462,283.742z M256,331.546c-41.724,0-75.548-33.823-75.548-75.546s33.824-75.547,75.548-75.547c41.723,0,75.546,33.824,75.546,75.547S297.723,331.546,256,331.546z"/></svg>
           </button>
 
           <a class="putainde-Tab-footer-link" href="https://github.com/putaindecode/tab">

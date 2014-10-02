@@ -162,6 +162,65 @@ html{box-sizing:border-box;overflow:auto;border-collapse:collapse}*,:before,:aft
   text-decoration: underline
 }
 
+.putainde-Tab-settings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  transform: translate(-50%, -50%);
+  background: rgba(15, 11, 6, 0.9);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0 1rem rgba(15, 11, 6, 0.8);
+}
+
+  .putainde-Tab-settings--hidden {
+    display: none;
+  }
+
+  .putainde-Tab-settings ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .putainde-Tab-settings li {
+    line-height: 2rem;
+  }
+
+  .putainde-Tab-settings ul li input {
+    vertical-align: middle;
+  }
+
+  .putainde-Tab-settings ul label:first-child {
+    margin-left: 1.75rem;
+  }
+
+  .putainde-Tab-settings ul li input[type=text] {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    border: none;
+  }
+
+  .putainde-Tab-settings-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom-left-radius: 0.5rem;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .putainde-Tab-settings-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
 .putainde-Tab-footer {
 
 }
