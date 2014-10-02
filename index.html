@@ -32,53 +32,137 @@
         font-size: 1rem;
         line-height: 1.525rem;
 
-        color: #fff;
+        font-family: "Helvetica Neue", Helvetica, "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+      }
 
+      body,
+      a {
+        color: #fff;
+        text-shadow:
+          0 0 0.2rem rgba(0,0,0,.8),
+          0 0.05rem 0.4rem rgba(0,0,0,.5),
+          0 -0.05rem 0.4rem rgba(0,0,0,.5),
+          0.05rem 0 0.4rem rgba(0,0,0,.5),
+          -0.05rem 0 0.4rem rgba(0,0,0,.5)
+        ;
+      }
+
+      small, .small { font-size: .8em }
+
+      .PrettyNewTab-stretch {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      .PrettyNewTab-background {
         background-color: transparent;
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
-      }
 
-      .visible {
-        visibility: visible;
         opacity: 1;
-        transition: opacity .5s linear;
+        -webkit-transition: opacity .6s;
+        transition: opacity .6s;
+
+        /* trigger gpu */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        /* avoid glitch */
+        -webkit-backface-visibility: hidden;
       }
 
-      .hidden {
-        visibility: hidden;
+      .PrettyNewTab-background--hidden {
         opacity: 0;
-        transition: visibility 0s .5s, opacity .5s linear;
       }
 
-      .PrettyNewTab-corner {
+      .PrettyNewTab-pin {
         position: absolute;
-      }
-
-        .PrettyNewTab-corner--top-right { top: 0; right: 0 }
-        .PrettyNewTab-corner--bottom-right { bottom: 0; right: 0 }
-        .PrettyNewTab-corner--top-left { top: 0; left: 0 }
-        .PrettyNewTab-corner--bottom-left { bottom: 0; left: 0 }
-
-      .PrettyNewTab-time {
-        position: absolute;
-        top: 0;
-        right: 0;
 
         padding: 1rem;
+      }
 
-        font-family: "Helvetica Neue", Helvetica, "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+        .PrettyNewTab-pin--top-right { top: 0; right: 0 }
+        .PrettyNewTab-pin--bottom-right { bottom: 0; right: 0 }
+        .PrettyNewTab-pin--top-left { top: 0; left: 0 }
+        .PrettyNewTab-pin--bottom-left { bottom: 0; left: 0 }
+
+        .PrettyNewTab-pin--top { top: 0; left: 0; right; width: 100%; }
+        .PrettyNewTab-pin--right { top: 0; right: 0; bottom: 0; height: 100%; }
+        .PrettyNewTab-pin--bottom { bottom: 0; left: 0; right; width: 100%; }
+        .PrettyNewTab-pin--left { top: 0; bottom: 0; left: 0; height: 100%; }
+
+        .PrettyNewTab-pin--top,
+        .PrettyNewTab-pin--bottom { text-align: center }
+
+        .PrettyNewTab-pin--right,
+        .PrettyNewTab-pin--left { /* @todo vertical-align */ }
+
+      .PrettyNewTab-time {
         font-size: 1.5rem;
         font-weight: 200;
+      }
 
-        text-shadow: 0 0 0.2rem rgba(0,0,0,.8);
+      .PrettyNewTab-footer {
+
+      }
+        .PrettyNewTab-footer .PrettyNewTab-footer-txt,
+        .PrettyNewTab-footer a {
+          -webkit-transition: all .5s;
+          transition: all .5s;
+        }
+
+        .PrettyNewTab-footer .PrettyNewTab-footer-txt { opacity: .25; }
+
+          .PrettyNewTab-footer:hover .PrettyNewTab-footer-txt { opacity: .5; }
+
+        .PrettyNewTab-footer a {
+          opacity: .3;
+          text-decoration: none;
+        }
+
+          .PrettyNewTab-footer:hover a { opacity: .6 }
+          .PrettyNewTab-footer a:hover { opacity: .75 }
+
+      .PrettyNewTab-separator {
+        font-size: .8em;
+        padding: .4rem;
+        opacity: .2;
       }
     </style>
   </head>
   <body class="hidden">
+    <div class="js-PrettyNewTab-background PrettyNewTab-stretch PrettyNewTab-background"></div>
+
+    <div class="PrettyNewTab-stretch PrettyNewTab-ui">
+      <time class="js-PrettyNewTab-time PrettyNewTab-time PrettyNewTab-pin PrettyNewTab-pin--top-right"></time>
+
+      <footer class="small PrettyNewTab-footer">
+        <div class="js-PrettyNewTab-credit PrettyNewTab-pin PrettyNewTab-pin--bottom-left"></div>
+
+        <div class="PrettyNewTab-pin PrettyNewTab-pin--bottom">
+          <span class="PrettyNewTab-footer-txt">Made with ♥︎ by</span>
+          <a href="http://putaindecode.io">putaindecode</a>
+        </div>
+
+        <div class="PrettyNewTab-pin PrettyNewTab-pin--bottom-right">
+          <a href="https://github.com/putaindecode/pretty-new-tab">Source Code</a>
+          <span class="PrettyNewTab-separator">|</span>
+          <a href="https://github.com/putaindecode/pretty-new-tab/issues">Contribute</a>
+          <span class="PrettyNewTab-separator">|</span>
+          <a href="https://github.com/putaindecode/pretty-new-tab/issues/new">Report a bug</a>
+        </div>
+      </footer>
+    </div>
     <script>
       /* jshint asi: true, laxcomma: true */
+
+      var preload = true
+      var updateInterval = 15 //sec
+
+      var backgroundEl = document.querySelector(".js-PrettyNewTab-background")
 
       /**
        * RUN THE SHIT
@@ -87,27 +171,40 @@
        * This make code easier to read.
        */
       window.onload = function() {
-        loadBackground(getRandomBackground(), function(item, img) {
-          console.log(item, img)
-          document.body.style.backgroundImage = "url(" + img.src +")"
-          document.body.className = "visible"
+        startClock()
 
-          startClock()
-          startbackgroundUpdater()
-
-          // now page is ok, we take some times to load other ref
-          preloadAllBackgrounds()
+        loadRandomBackground(function() {
+          startBackgroundUpdaterLoop()
+          if (preload) {
+            preloadBackgrounds()
+          }
         })
 
-        // we can't do that, history API is limited to current domain
-        // well we don't have a domain for file:/// so we are screwed...
+        // we can"t do that, history API is limited to current domain
+        // well we don"t have a domain for file:/// so we are screwed...
         // any idea ?
         // https://github.com/putaindecode/pretty-new-tab/issues/2
         // history.pushState({}, "", "");
       }
 
       /**
-       * load a background
+       * load a random background
+       */
+      function loadRandomBackground(callback) {
+        loadBackground(getRandomBackground(), function(item, img) {
+          backgroundEl.classList.add("PrettyNewTab-background--hidden")
+          onNextTransitionEnd(backgroundEl, function() {
+            backgroundEl.style.backgroundImage = "url(" + img.src +")"
+            backgroundEl.classList.remove("PrettyNewTab-background--hidden")
+          })
+          if (callback) {
+            callback()
+          }
+        })
+      }
+
+      /**
+       * load a background then execute a callback
        *
        * @param {Object}   item     background object to load
        * @param {Function} callback callback to execute when image is loaded. First arg is the item itself, 2nd is the image object.
@@ -122,30 +219,32 @@
 
       /**
        * preload all backgrounds
+       * one bye one
+       * not in parallel
        */
-      function preloadAllBackgrounds() {
-        backgrounds.forEach(function(item) {
-          loadBackground(item, function(item) { console.log("item preloaded", item)})
-        })
+      function preloadBackgrounds() {
+        preloadBackground(0)
+      }
+
+      /**
+       * preload the background at the given index
+       * @param {Integer} i index of the background array to load
+       */
+      function preloadBackground(i) {
+        // load next
+        if (i < backgrounds.length) {
+          loadBackground(backgrounds[i], function(item) {
+            console.log("item preloaded", i, item.url)
+            preloadBackground(i + 1)
+          })
+        }
       }
 
       /**
        * start periodic background updates
        */
-      function startbackgroundUpdater() {
-        var updateInterval = 10000
-
-        window.setInterval(function() {
-          loadBackground(getRandomBackground(), function(item, img) {
-            console.log(item, img)
-            document.body.className = "hidden"
-
-            window.setTimeout(function() {
-              document.body.style.backgroundImage = "url(" + img.src +")"
-              document.body.className = "visible"
-            }, 1000)
-          })
-        }, updateInterval)
+      function startBackgroundUpdaterLoop() {
+        setInterval(loadRandomBackground, updateInterval * 1000)
       }
 
       /**
@@ -166,23 +265,54 @@
       }
 
       /**
+       * add callback for transitionEnd
+       */
+      function onNextTransitionEnd (el, callback) {
+        var transition
+        var transitions = {
+          "transition": "transitionend",
+          "OTransition": "otransitionend",
+          "MozTransition": "transitionend",
+          "WebkitTransition": "webkitTransitionEnd"
+        }
+
+        var i
+        for (i in transitions) {
+          if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
+            transition = transitions[i]
+          }
+        }
+
+        if (transition) {
+          var cb = function() {
+            callback()
+            el.removeEventListener(transition, cb)
+          }
+          el.addEventListener(transition, cb, false)
+        }
+        else {
+          setTimeout(callback, 1000) // poor fallback - lol
+        }
+      }
+
+      /**
        * What time is it?
        */
       function startClock() {
-        var clock = document.createElement('time');
-        clock.setAttribute('class', 'PrettyNewTab-time PrettyNewTab-corner PrettyNewTab-corner--top-right')
+        var clock = document.querySelector(".js-PrettyNewTab-time");
 
         var updateClock = function () {
           var date = new Date()
           var hours = date.getHours().toString()
           var minutes = date.getMinutes().toString()
-          clock.innerHTML = (hours.length < 2 ? '0' : '') + hours + ':' + (minutes.length < 2 ? '0' : '') + minutes
+          clock.innerHTML = (hours.length < 2 ? "0" : "") + hours + ":" + (minutes.length < 2 ? "0" : "") + minutes
         }
 
-        window.setInterval(updateClock, 60000)
         updateClock()
 
-        document.body.appendChild(clock)
+        // do not update each 60sec
+        // because you don't know when you started
+        setInterval(updateClock, 10 * 1000)
       }
 
       /**
