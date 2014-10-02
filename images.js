@@ -220,43 +220,5 @@ var backgrounds = [
       "source": "Adrian Simionov",
       "sourceUrl": "http://500px.com/photo/63850509/the-place-of-no-words-by-adrian-simionov",
       "title": "Queenstown, New Zealand"
-  },
-  {
-      "url": "backgrounds/35.jpg",
-      "impressionUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli=10918568&PluID=0&ord=[timestamp]&rtu=-1",
-      "shutterstockPromo": true,
-      "source": "Shutterstock",
-      "sourceUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=10918568&PluID=0&ord=[timestamp]",
-      "title": "Forest Road"
-  },
-  {
-      "url": "backgrounds/36.jpg",
-      "impressionUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli=10918570&PluID=0&ord=[timestamp]&rtu=-1",
-      "shutterstockPromo": true,
-      "source": "Shutterstock",
-      "sourceUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=10918570&PluID=0&ord=[timestamp]",
-      "title": "Boating"
-  },
-  {
-      "url": "backgrounds/37.jpg",
-      "impressionUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli=10918571&PluID=0&ord=[timestamp]&rtu=-1",
-      "shutterstockPromo": true,
-      "source": "Shutterstock",
-      "sourceUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=10918571&PluID=0&ord=[timestamp]",
-      "title": "On the Beach"
-  },
-  {
-      "url": "backgrounds/38.jpg",
-      "impressionUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli=10918572&PluID=0&ord=[timestamp]&rtu=-1",
-      "shutterstockPromo": true,
-      "source": "Shutterstock",
-      "sourceUrl": "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=10918572&PluID=0&ord=[timestamp]",
-      "title": "National Bison Range, Montana, USA"
-  },
-  {
-      "url": "backgrounds/39.jpg",
-      "source": "Trey Ratcliff",
-      "sourceUrl": "http://chromecastbg.alexmeub.com/images/orig_Lorne-Road.jpg",
-      "title": ""
   }
 ]
