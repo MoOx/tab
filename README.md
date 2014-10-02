@@ -12,8 +12,9 @@ Set [putaindecode.io/pretty-new-tab](http://putaindecode.io/pretty-new-tab/) as 
 
     git clone https://github.com/putaindecode/pretty-new-tab.git
 
-    # Optional
-    # Customize the images in images.js
+#### Optional
+
+Edit `images.js`.
 
 #### Firefox
 
