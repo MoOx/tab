@@ -8,7 +8,7 @@
 
 Set [putaindecode.io/pretty-new-tab](http://putaindecode.io/pretty-new-tab/) as a url for your new tab/window.
 
-### Local (recommanded + faster)
+### Local (recommended + faster)
 
     git clone https://github.com/putaindecode/pretty-new-tab.git
 
