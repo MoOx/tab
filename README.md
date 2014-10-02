@@ -12,6 +12,9 @@ Set [putaindecode.io/pretty-new-tab](http://putaindecode.io/pretty-new-tab/) as 
 
     git clone https://github.com/putaindecode/pretty-new-tab.git
 
+    # Optional
+    # Customize the images in images.js
+
 #### Firefox
 
 Type `about:config` and set `browser.newtab.url` to `file:///YOUR/PATH/TO/pretty-new-tab/index.html`
