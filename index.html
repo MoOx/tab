@@ -99,7 +99,7 @@
         align-items: center;
 
         color: #fff;
-        opacity: .4;
+        opacity: .2;
       }
 
       .PrettyNewTab-background {
@@ -242,6 +242,7 @@
       var preload = true
       var updateInterval = 30 //sec, 0 disable auto update
 
+      var loaderEl = document.querySelector(".js-PrettyNewTab-loader")
       var backgroundEl = document.querySelector(".js-PrettyNewTab-background")
       var backgroundCreditsEl = document.querySelector(".js-PrettyNewTab-backgroundCredit")
       var clockEl = document.querySelector(".js-PrettyNewTab-time");
@@ -286,6 +287,7 @@
       function loadRandomBackground(callback) {
         loadBackground(getRandomBackground(), function(item) {
           backgroundEl.classList.add("PrettyNewTab-background--hidden")
+          loaderEl.removeAttribute("hidden")
           backgroundCreditsEl.innerHTML = ""
 
           // first time, we already have PrettyNewTab-background--hidden
@@ -313,6 +315,7 @@
       }
 
       function updateBackground(item) {
+        loaderEl.setAttribute("hidden", true)
         backgroundEl.style.backgroundImage = "url(" + item.url +")"
         backgroundEl.classList.remove("PrettyNewTab-background--hidden")
 
