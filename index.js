@@ -53,14 +53,17 @@
       backgroundEl.classList.add("PrettyNewTab-background--hidden")
       backgroundCreditsEl.innerHTML = ""
 
+      var updated = false
       // first time, we already have PrettyNewTab-background--hidden
       // so there is no animation, so there is no need to wait for its end.
       // @todo replace this hacky hack by a smart thing using transitionStart & transitionEnd to update a flag ;)
       if (!backgroundEl.style.backgroundImage) {
-        updateBackground(item)
+        updated = updateBackground(item)
       }
       else {
-        onNextTransitionEnd(backgroundEl, function() { updateBackground(item) })
+        onNextTransitionEnd(backgroundEl, function() {
+          updated = updateBackground(item)
+        })
       }
 
       if (updateInterval) {
@@ -89,6 +92,8 @@
     if (credits !== title) {
       backgroundCreditsEl.setAttribute("title", credits)
     }
+
+    return true
   }
 
   /**
@@ -121,8 +126,7 @@
   function preloadBackground(i) {
     // load next
     if (i < backgrounds.length) {
-      loadBackground(backgrounds[i], function(item) {
-        console.log("item preloaded", i, item.url)
+      loadBackground(backgrounds[i], function() {
         preloadBackground(i + 1)
       })
     }
@@ -147,6 +151,7 @@
 
   /**
    * execute callback for the next transitionEnd
+   * need to be called after the start or unexpected result might append
    *
    * @param {Object}   el       dom element to look at
    * @param {Function} callback function to execute at the end
@@ -162,6 +167,7 @@
 
   /**
    * execute callback for the next animationIteration
+   * need to be called after the start or unexpected result might append
    *
    * @param {Object}   el       dom element to look at
    * @param {Function} callback function to execute at the end
@@ -177,6 +183,7 @@
 
   /**
    * execute callback for the next animationEnd
+   * need to be called after the start or unexpected result might append
    *
    * @param {Object}   el       dom element to look at
    * @param {Function} callback function to execute at the end
@@ -198,12 +205,19 @@
       }
     }
 
+    var duration = parseInt(window.getComputedStyle(el).getPropertyValue("transition-duration")) || 1 // shitty fallback
+
     if (ani) {
       var cb = function() {
         callback()
         el.removeEventListener(ani, cb)
+        clearTimeout(shittyFallback)
       }
       el.addEventListener(ani, cb, false)
+
+      // transition end doesn't work properly when tab is in background on some browser (safari 7/8)
+      // so we add a shitty timeout
+      var shittyFallback = setTimeout(cb, (duration * 1000) + 200)
     }
     else {
       setTimeout(callback, 1000) // poor fallback - lol
