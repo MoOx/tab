@@ -49,8 +49,8 @@ window.PrettyNewTab = {
     {
       color: "rgb(190, 130, 61)",
       url: "backgrounds/07.jpg",
-      source: "Submit Source",
-      sourceUrl: "mailto:feedback@blah.com",
+      source: "",
+      sourceUrl: "https://github.com/putaindecode/pretty-new-tab/issues/new",
       title: "Source Unknown"
     },
     {

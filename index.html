@@ -255,7 +255,7 @@
         loadRandomBackground(function() {
           // loader is useless after first load
           loaderEl.setAttribute("hidden", true)
-          
+
           if (preload) {
             preloadBackgrounds()
           }
@@ -313,7 +313,7 @@
         backgroundEl.style.backgroundImage = "url(" + item.url +")"
         backgroundEl.classList.remove("PrettyNewTab-background--hidden")
 
-        var credits = "Credits: " + item.source
+        var credits = item.source ? "Credits: " + item.source : "If you know the source, please let you know."
         var title = item.title ? item.title : credits
 
         backgroundCreditsEl.setAttribute("href", item.sourceUrl)
