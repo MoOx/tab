@@ -16,7 +16,9 @@ Go to [`about:config?filter=browser.newtab.url`](about:config?filter=browser.new
 
 ### Local (customisable)
 
-    git clone https://github.com/putaindecode/tab.git
+```bash
+$ git clone https://github.com/putaindecode/tab.git
+```
 
 #### Optional
 
