@@ -41,7 +41,7 @@
     // we can"t do that, history API is limited to current domain
     // well we don"t have a domain for file:/// so we are screwed...
     // any idea ?
-    // https://github.com/putaindecode/pretty-new-tab/issues/2
+    // https://github.com/putaindecode/tab/issues/2
     // history.pushState({}, "", "");
   }
 
