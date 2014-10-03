@@ -1,7 +1,7 @@
 (function(options) {
   var backgrounds = options.backgrounds
   var preload = true
-  var updateInterval = 5 // sec, 0 disable auto update
+  var updateInterval = 30 // sec, 0 disable auto update
 
   var loaderEl = document.querySelector(".js-PrettyNewTab-loader")
   var backgroundEl = document.querySelector(".js-PrettyNewTab-background")
