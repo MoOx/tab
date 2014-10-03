@@ -225,8 +225,7 @@ window.PrettyNewTab = {
     {
       url: "backgrounds/39.jpg",
       source: "Trey Ratcliff",
-      sourceUrl: "http://chromecastbg.alexmeub.com/images/orig_Lorne-Road.jpg",
-      title: ""
+      sourceUrl: "https://www.flickr.com/photos/stuckincustoms/"
     }
   ]
 }

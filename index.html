@@ -290,9 +290,15 @@
           onNextTransitionEnd(backgroundEl, function() {
             backgroundEl.style.backgroundImage = "url(" + item.url +")"
             backgroundEl.classList.remove("PrettyNewTab-background--hidden")
+
+            var credits = "Credits: " + item.source
+            var title = title ? title : credits
+
             backgroundCreditsEl.setAttribute("href", item.sourceUrl)
-            backgroundCreditsEl.setAttribute("title", "Credits: " + item.source)
-            backgroundCreditsEl.innerHTML = item.title
+            backgroundCreditsEl.innerHTML = title
+            if (credits !== title) {
+              backgroundCreditsEl.setAttribute("title", credits)
+            }
           })
 
           if (updateInterval) {
