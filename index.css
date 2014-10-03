@@ -1,0 +1,188 @@
+/* libs below has been compressed via http://csscompressor.com/ */
+
+/**
+ * https://github.com/cssrecipes/defaults/blob/master/index.css
+ */
+html{box-sizing:border-box;overflow:auto;border-collapse:collapse}*,:before,:after{box-sizing:inherit;overflow:inherit}*{border-collapse:inherit}:not(body){background-repeat:no-repeat;background-position:50%;background-size:cover}[hidden]{display:none!important}html,body{margin:0;padding:0}
+
+/**
+ * https://github.com/cssrecipes/reset/blob/master/button.css
+ */
+.reset-Button{border:none;margin:0;padding:0;width:auto;overflow:visible;background:transparent;color:inherit;font:inherit;line-height:normal;-webkit-font-smoothing:inherit;-moz-osx-font-smoothing:inherit;-webkit-appearance:none}.reset-Button::-moz-focus-inner{border:0;padding:0}
+
+/*
+ * Typography & layout
+ */
+.PrettyNewTab,
+.PrettyNewTab body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.PrettyNewTab body {
+  font-size: 1rem;
+  line-height: 1.525rem;
+
+  font-family: "Helvetica Neue", Helvetica, "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+.PrettyNewTab body,
+.PrettyNewTab a {
+  color: #fff;
+  text-shadow:
+    0 0 0.2rem rgba(0,0,0,.8),
+    0 0.05rem 0.4rem rgba(0,0,0,.5),
+    0 -0.05rem 0.4rem rgba(0,0,0,.5),
+    0.05rem 0 0.4rem rgba(0,0,0,.5),
+    -0.05rem 0 0.4rem rgba(0,0,0,.5)
+  ;
+}
+
+.PrettyNewTab small,
+.PrettyNewTab .small { font-size: .8em }
+
+/*
+ * Utilities
+ */
+
+.PrettyNewTab-stretch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@-webkit-keyframes PrettyNewTab-animation-spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes PrettyNewTab-animation-spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+.PrettyNewTab-animate-spin {
+    animation: PrettyNewTab-animation-spin .6s infinite linear;
+}
+
+.PrettyNewTab-pin {
+  position: absolute;
+
+  padding: 1rem;
+}
+
+  .PrettyNewTab-pin--top-right { top: 0; right: 0 }
+  .PrettyNewTab-pin--bottom-right { bottom: 0; right: 0 }
+  .PrettyNewTab-pin--top-left { top: 0; left: 0 }
+  .PrettyNewTab-pin--bottom-left { bottom: 0; left: 0 }
+
+  .PrettyNewTab-pin--top { top: 0; left: 0; right: 0; width: 100%; }
+  .PrettyNewTab-pin--right { top: 0; right: 0; bottom: 0; height: 100%; }
+  .PrettyNewTab-pin--bottom { bottom: 0; left: 0; right: 0; width: 100%; }
+  .PrettyNewTab-pin--left { top: 0; bottom: 0; left: 0; height: 100%; }
+
+  .PrettyNewTab-pin--top,
+  .PrettyNewTab-pin--bottom { text-align: center }
+
+  .PrettyNewTab-pin--right,
+  .PrettyNewTab-pin--left { /* @todo vertical-align */ }
+
+/*
+ * components
+ */
+
+.PrettyNewTab-icon {
+  transform: translate3d(0,0,0); /* fix webkit/blink poor rendering issues */
+
+  display: inline-block;
+
+  /*width: 1em;
+  height: 1em;*/
+  line-height: 1;
+  vertical-align: middle;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  fill: currentColor;
+}
+
+.PrettyNewTab-button {
+  cursor: pointer;
+}
+
+.PrettyNewTab-loader {
+  color: #fff;
+  opacity: 1;
+}
+
+.PrettyNewTab-background {
+  background-color: transparent;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  opacity: 1;
+  -webkit-transition: opacity .6s;
+  transition: opacity .6s;
+
+  /* trigger gpu */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* avoid glitch */
+  -webkit-backface-visibility: hidden;
+}
+
+.PrettyNewTab-background--hidden {
+  opacity: 0;
+}
+
+.PrettyNewTab-backgroundOverlay {
+  background-color: transparent;
+  background-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, .75) 100%
+  );
+}
+
+.PrettyNewTab-time {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.PrettyNewTab-backgroundCredit {
+  text-decoration: none
+}
+.PrettyNewTab-backgroundCredit:hover {
+  text-decoration: underline
+}
+
+.PrettyNewTab-footer {
+
+}
+
+  .PrettyNewTab-footer .PrettyNewTab-footer-txt,
+  .PrettyNewTab-footer-link {
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+  }
+
+    .PrettyNewTab-footer-txt { opacity: .25; }
+
+    .PrettyNewTab-footer:hover .PrettyNewTab-footer-txt { opacity: .4; }
+
+  .PrettyNewTab-footer-link {
+    opacity: .3;
+    text-decoration: none;
+  }
+
+    .PrettyNewTab-footer:hover .PrettyNewTab-footer-link { opacity: .5 }
+    .PrettyNewTab-footer:hover .PrettyNewTab-footer-link:hover {
+      opacity: .75;
+      text-decoration: underline;
+    }
