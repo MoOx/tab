@@ -8,7 +8,7 @@ _Note: before [reporting a bug](https://github.com/putaindecode/tab/issues/new),
 
 ### Online
 
-Set [putaindecode.io/tab](http://putaindecode.io/tab/) as a url for your new tab/window.
+Set [putaindecode.io/tab/](http://putaindecode.io/tab/) as a url for your new tab/window.
 
 ##### Firefox
 
