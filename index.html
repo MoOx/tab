@@ -180,7 +180,7 @@
     </div>
     <script src="images.js"></script>
     <script>
-      /* jshint asi: true, laxcomma: true */
+    /* global backgrounds */
 
       var preload = true
       var updateInterval = 30 //sec
@@ -215,7 +215,7 @@
        * load a random background
        */
       function loadRandomBackground(callback) {
-        loadBackground(getRandomBackground(), function(item, img) {
+        loadBackground(getRandomBackground(), function(item) {
           backgroundEl.classList.add("PrettyNewTab-background--hidden")
           backgroundCreditsEl.innerHTML = ""
           onNextTransitionEnd(backgroundEl, function() {

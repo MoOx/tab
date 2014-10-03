@@ -19,3 +19,15 @@ Edit `images.js`.
 #### Firefox
 
 Type `about:config` and set `browser.newtab.url` to `file:///YOUR/PATH/TO/pretty-new-tab/index.html`
+
+---
+
+## Contributing
+
+Work on a branch & respect coding style.
+
+    $ git clone https://github.com/putaindecode/pretty-new-tab.git
+    $ git checkout -b patch-1
+    $ open index.html
+
+## [License](LICENSE)
