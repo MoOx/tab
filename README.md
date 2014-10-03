@@ -20,7 +20,7 @@ Go to `about:config?filter=browser.newtab.url` and set `http://putaindecode.io/t
 $ git clone https://github.com/putaindecode/tab.git
 ```
 
-#### Optional
+#### Update pictures feed (optional)
 
 Edit `images.js`.
 
