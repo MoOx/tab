@@ -292,7 +292,7 @@
             backgroundEl.classList.remove("PrettyNewTab-background--hidden")
 
             var credits = "Credits: " + item.source
-            var title = title ? title : credits
+            var title = item.title ? item.title : credits
 
             backgroundCreditsEl.setAttribute("href", item.sourceUrl)
             backgroundCreditsEl.innerHTML = title
