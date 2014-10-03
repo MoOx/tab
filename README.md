@@ -14,7 +14,7 @@ Set [putaindecode.io/tab/](http://putaindecode.io/tab/) as a url for your new ta
 
 Go to [`about:config?filter=browser.newtab.url`](about:config?filter=browser.newtab.url) and set `http://putaindecode.io/tab/`
 
-### Local (customizable)
+### Local (customisable)
 
     git clone https://github.com/putaindecode/tab.git
 
