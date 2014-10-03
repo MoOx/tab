@@ -1,4 +1,4 @@
-# Pretty New Tab
+# tab
 
 > Get a nice picture each time you open a new blank tab.
 
