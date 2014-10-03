@@ -10,7 +10,7 @@ _Note: before [reporting a bug](https://github.com/putaindecode/tab/issues/new),
 
 Set [putaindecode.io/tab](http://putaindecode.io/tab/) as a url for your new tab/window.
 
-#### Firefox
+##### Firefox
 
 Go to [`about:config?filter=browser.newtab.url`](about:config?filter=browser.newtab.url) and set `http://putaindecode.io/tab/`
 
@@ -22,7 +22,7 @@ Go to [`about:config?filter=browser.newtab.url`](about:config?filter=browser.new
 
 Edit `images.js`.
 
-#### Firefox
+##### Firefox
 
 Go to [`about:config?filter=browser.newtab.url`](about:config?filter=browser.newtab.url) and set `file:///YOUR/PATH/TO/tab/index.html`
 
