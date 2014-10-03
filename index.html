@@ -244,6 +244,7 @@
 
       var backgroundEl = document.querySelector(".js-PrettyNewTab-background")
       var backgroundCreditsEl = document.querySelector(".js-PrettyNewTab-backgroundCredit")
+      var clockEl = document.querySelector(".js-PrettyNewTab-time");
       var changeBackgroundEl = document.querySelector(".js-PrettyNewTab-changeBackground")
 
       var timeout
@@ -428,24 +429,27 @@
       }
 
       /**
-       * What time is it?
+       * start the clock
        */
       function startClock() {
-        var clock = document.querySelector(".js-PrettyNewTab-time");
-
-        var updateClock = function () {
-          var date = new Date()
-          var hours = date.getHours().toString()
-          var minutes = date.getMinutes().toString()
-          clock.innerHTML = (hours.length < 2 ? "0" : "") + hours + ":" + (minutes.length < 2 ? "0" : "") + minutes
-        }
-
         updateClock()
 
         // do not update each 60sec
         // because you don't know when you started
+        // and you can miss a minute if you start at 00:00:40
         setInterval(updateClock, 10 * 1000)
       }
+
+      /**
+       * update the clock
+       */
+      var updateClock = function () {
+        var date = new Date()
+        var hours = date.getHours().toString()
+        var minutes = date.getMinutes().toString()
+        clockEl.innerHTML = (hours.length < 2 ? "0" : "") + hours + ":" + (minutes.length < 2 ? "0" : "") + minutes
+      }
+
     })(window.PrettyNewTab)
     </script>
   </body>
