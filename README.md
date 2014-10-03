@@ -1,14 +1,20 @@
 # Pretty New Tab
 
-> Get a nice picture each time you open a new tab
+> Get a nice picture each time you open a new blank tab.
+
+_Note: before [reporting a bug](https://github.com/putaindecode/pretty-new-tab/issues/new), please checkout [opened issues](https://github.com/putaindecode/pretty-new-tab/issues/) first._
 
 ## Usage
 
-### Demo
+### Online
 
 Set [putaindecode.io/pretty-new-tab](http://putaindecode.io/pretty-new-tab/) as a url for your new tab/window.
 
-### Local (recommended + faster)
+#### Firefox
+
+Type `about:config` and set `browser.newtab.url` to `http://putaindecode.io/pretty-new-tab/`
+
+### Local (customizable & faster)
 
     git clone https://github.com/putaindecode/pretty-new-tab.git
 
