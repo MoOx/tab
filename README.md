@@ -12,7 +12,7 @@ Set [putaindecode.io/tab](http://putaindecode.io/tab/) as a url for your new tab
 
 #### Firefox
 
-Go to [about:config?filter=browser.newtab.url](about:config?filter=browser.newtab.url) and set `http://putaindecode.io/tab/`
+Go to [`about:config?filter=browser.newtab.url`](about:config?filter=browser.newtab.url) and set `http://putaindecode.io/tab/`
 
 ### Local (customizable & faster)
 
@@ -24,7 +24,7 @@ Edit `images.js`.
 
 #### Firefox
 
-Go to [about:config?filter=browser.newtab.url](about:config?filter=browser.newtab.url) and set `file:///YOUR/PATH/TO/tab/index.html`
+Go to [`about:config?filter=browser.newtab.url`](about:config?filter=browser.newtab.url) and set `file:///YOUR/PATH/TO/tab/index.html`
 
 ---
 
