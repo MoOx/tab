@@ -22,7 +22,7 @@ $ git clone https://github.com/putaindecode/tab.git
 
 #### Update pictures feed (optional)
 
-Edit `images.js`.
+Edit `images.js`. If you do this step, be careful of the manifest `cache.appcache` (remove the reference in the html file or adjust it).
 
 ##### Firefox
 
@@ -31,6 +31,10 @@ Go to `about:config?filter=browser.newtab.url` and set `file:///YOUR/PATH/TO/tab
 ---
 
 ## Contributing
+
+_We do not have a builded app for now (see [#23](https://github.com/putaindecode/tab/issues/23)), but we use an appcache file._  
+**This means every modifications in every cached files (for now the entire app & assets) need a corresponding update in the cache manifest.**  
+_Updating the timestamp in the `cache.appcache` file manually should do the trick until we automate all the things._
 
 Work on a branch & respect coding style.
 

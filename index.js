@@ -1,6 +1,5 @@
 (function(options) {
   var backgrounds = options.backgrounds
-  var preload = true
   var updateInterval = 30 // sec, 0 disable auto update
 
   var loaderEl = document.querySelector(".js-putainde-Tab-loader")
@@ -23,10 +22,6 @@
     loadRandomBackground(function() {
       // loader is useless after first load
       loaderEl.setAttribute("hidden", true)
-
-      if (preload) {
-        preloadBackgrounds()
-      }
     })
 
     changeBackgroundEl.addEventListener("click", function() {
@@ -107,28 +102,6 @@
     img.src = item.url
     if (typeof callback === "function") {
       img.onload = callback.bind(callback, item, img)
-    }
-  }
-
-  /**
-   * preload all backgrounds
-   * one bye one
-   * not in parallel
-   */
-  function preloadBackgrounds() {
-    preloadBackground(0)
-  }
-
-  /**
-   * preload the background at the given index
-   * @param {Integer} i index of the background array to load
-   */
-  function preloadBackground(i) {
-    // load next
-    if (i < backgrounds.length) {
-      loadBackground(backgrounds[i], function() {
-        preloadBackground(i + 1)
-      })
     }
   }
 
