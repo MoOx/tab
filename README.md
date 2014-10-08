@@ -8,7 +8,7 @@ _Note: before [reporting a bug](https://github.com/putaindecode/tab/issues/new),
 
 ### Online
 
-Set [putaindecode.io/tab/](http://putaindecode.io/tab/) as a url for your new tab/window.
+Set [putaindecode.io/tab/](http://putaindecode.io/tab/) as a url for your new tab/window. _Do not remove the trailing slash or you will get a redirection (with the slash) which will create a lag every time you will open a new tab._
 
 ##### Firefox
 
