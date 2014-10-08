@@ -3,11 +3,11 @@
   var preload = true
   var updateInterval = 30 // sec, 0 disable auto update
 
-  var loaderEl = document.querySelector(".js-PrettyNewTab-loader")
-  var backgroundEl = document.querySelector(".js-PrettyNewTab-background")
-  var backgroundCreditsEl = document.querySelector(".js-PrettyNewTab-backgroundCredit")
-  var clockEl = document.querySelector(".js-PrettyNewTab-time");
-  var changeBackgroundEl = document.querySelector(".js-PrettyNewTab-changeBackground")
+  var loaderEl = document.querySelector(".js-putainde-Tab-loader")
+  var backgroundEl = document.querySelector(".js-putainde-Tab-background")
+  var backgroundCreditsEl = document.querySelector(".js-putainde-Tab-backgroundCredit")
+  var clockEl = document.querySelector(".js-putainde-Tab-time");
+  var changeBackgroundEl = document.querySelector(".js-putainde-Tab-changeBackground")
 
   var timeout
 
@@ -30,10 +30,10 @@
     })
 
     changeBackgroundEl.addEventListener("click", function() {
-      changeBackgroundEl.classList.add("PrettyNewTab-animate-spin")
+      changeBackgroundEl.classList.add("putainde-Tab-animate-spin")
       loadRandomBackground(function() {
         onNextAnimationIteration(changeBackgroundEl, function() {
-          changeBackgroundEl.classList.remove("PrettyNewTab-animate-spin")
+          changeBackgroundEl.classList.remove("putainde-Tab-animate-spin")
         })
       })
     })
@@ -50,11 +50,11 @@
    */
   function loadRandomBackground(callback) {
     loadBackground(getRandomBackground(), function(item) {
-      backgroundEl.classList.add("PrettyNewTab-background--hidden")
+      backgroundEl.classList.add("putainde-Tab-background--hidden")
       backgroundCreditsEl.innerHTML = ""
 
       var updated = false
-      // first time, we already have PrettyNewTab-background--hidden
+      // first time, we already have putainde-Tab-background--hidden
       // so there is no animation, so there is no need to wait for its end.
       // @todo replace this hacky hack by a smart thing using transitionStart & transitionEnd to update a flag ;)
       if (!backgroundEl.style.backgroundImage) {
@@ -82,7 +82,7 @@
 
   function updateBackground(item) {
     backgroundEl.style.backgroundImage = "url(" + item.url + ")"
-    backgroundEl.classList.remove("PrettyNewTab-background--hidden")
+    backgroundEl.classList.remove("putainde-Tab-background--hidden")
 
     var credits = item.source ? "Credits: " + item.source : "If you know the source, please let you know."
     var title = item.title ? item.title : credits
@@ -245,4 +245,4 @@
     var minutes = date.getMinutes().toString()
     clockEl.innerHTML = (hours.length < 2 ? "0" : "") + hours + ":" + (minutes.length < 2 ? "0" : "") + minutes
   }
-})(window.PrettyNewTab)
+})(window.putaindeTab)

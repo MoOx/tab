@@ -2,7 +2,7 @@
  * backgrounds data
  * @type {Array}
  */
-window.PrettyNewTab = {
+window.putaindeTab = {
   backgrounds: [
     {
       color: "rgb(120, 126, 181)",
