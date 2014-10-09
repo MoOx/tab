@@ -212,7 +212,7 @@
   /**
    * update the clock
    */
-  var updateClock = function() {
+  function updateClock() {
     var date = new Date()
     var hours = date.getHours().toString()
     var minutes = date.getMinutes().toString()
