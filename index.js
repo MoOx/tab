@@ -33,6 +33,8 @@
       })
     })
 
+    loadCustomisations()
+
     // we can"t do that, history API is limited to current domain
     // well we don"t have a domain for file:/// so we are screwed...
     // any idea ?
@@ -218,4 +220,55 @@
     var minutes = date.getMinutes().toString()
     clockEl.innerHTML = (hours.length < 2 ? "0" : "") + hours + ":" + (minutes.length < 2 ? "0" : "") + minutes
   }
+
+  /**
+   * load user customisations
+   */
+  function loadCustomisations() {
+    var queryString = window.location.search.slice(1)
+    var parameters = {}
+
+    queryString.split("&").map(function(declaration) {
+      var chunks = declaration.split("=", 2)
+      var key = chunks[0]
+      var value = chunks[1]
+
+      switch (key) {
+        case "scripts":
+          var scriptUrls = value.split(",")
+          loadCustomScripts(scriptUrls)
+          break
+        case "styles":
+          var styleUrls = value.split(",")
+          loadCustomStyles(styleUrls)
+          break
+      }
+    })
+  }
+
+  /**
+   * load custom user scripts
+   */
+  function loadCustomScripts(scriptUrls) {
+    scriptUrls.forEach(function(url) {
+      var scriptEl = document.createElement("script")
+      scriptEl.setAttribute("src", url)
+
+      document.body.appendChild(scriptEl)
+    })
+  }
+
+  /**
+   * load custom user stylesheets
+   */
+  function loadCustomStyles(styleUrls) {
+    styleUrls.forEach(function(url) {
+      var linkEl = document.createElement("link")
+      linkEl.setAttribute("rel", "stylesheet")
+      linkEl.setAttribute("href", url)
+
+      document.body.appendChild(linkEl)
+    })
+  }
+
 })(window.putaindeTab)
