@@ -28,6 +28,30 @@ Edit `images.js`. If you do this step, be careful of the manifest `cache.appcach
 
 Go to `about:config?filter=browser.newtab.url` and set `file:///YOUR/PATH/TO/tab/index.html`
 
+
+### Options
+
+You can pass some user script & styles to the url like this by appending some parameters.
+
+Checkout this a real online example: [putaindecode.io/tab/?scripts=https://rawgit.com/MoOx/0c43795ea80dc48faa28/raw/9c9e8d899b14616fcf18e53f7e98f22aad03d6a9/custom.js&styles=https://rawgit.com/MoOx/0c43795ea80dc48faa28/raw/11d12f02ee26f6e310e842e8832d339f2a2f0c9f/custom.css](http://putaindecode.io/tab/?scripts=https://rawgit.com/MoOx/0c43795ea80dc48faa28/raw/9c9e8d899b14616fcf18e53f7e98f22aad03d6a9/custom.js&styles=https://rawgit.com/MoOx/0c43795ea80dc48faa28/raw/11d12f02ee26f6e310e842e8832d339f2a2f0c9f/custom.css)
+
+#### `scripts`
+
+Urls for user scripts, comma separated.
+
+```
+url/?scripts=url1.js,url2.js
+```
+
+#### `styles`
+
+Urls for user styles, comma separated.
+
+```
+url/?styles=url1.js,url2.js
+```
+
+
 ---
 
 ## Contributing
