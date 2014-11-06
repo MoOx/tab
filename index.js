@@ -81,7 +81,7 @@
     backgroundEl.style.backgroundImage = "url(" + item.url + ")"
     backgroundEl.classList.remove("putainde-Tab-background--hidden")
 
-    var credits = item.source ? "Credits: " + item.source : "If you know the source, please let you know."
+    var credits = item.source ? "Credits: " + item.source : "If you know the source, please let us know."
     var title = item.title ? item.title : credits
 
     backgroundCreditsEl.setAttribute("href", item.sourceUrl)
