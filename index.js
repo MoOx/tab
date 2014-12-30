@@ -7,6 +7,11 @@
   var backgroundCreditsEl = document.querySelector(".js-putainde-Tab-backgroundCredit")
   var clockEl = document.querySelector(".js-putainde-Tab-time")
   var changeBackgroundEl = document.querySelector(".js-putainde-Tab-changeBackground")
+  var madeByEl = document.querySelector(".js-putainde-Tab-footer-madeBy")
+
+  if (window.hostname === "putaindecode.io") {
+    madeByEl.style.display = "block"
+  }
 
   var timeout
 
