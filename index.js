@@ -4,6 +4,8 @@
 
   var loaderEl = document.querySelector(".js-putainde-Tab-loader")
   var backgroundEl = document.querySelector(".js-putainde-Tab-background")
+  var imgEl
+  var imgBlurEl
   var backgroundCreditsEl = document.querySelector(".js-putainde-Tab-backgroundCredit")
   var clockEl = document.querySelector(".js-putainde-Tab-time")
   var changeBackgroundEl = document.querySelector(".js-putainde-Tab-changeBackground")
@@ -51,20 +53,21 @@
    * load a random background
    */
   function loadRandomBackground(callback) {
-    loadBackground(getRandomBackground(), function(item) {
-      backgroundEl.classList.add("putainde-Tab-background--hidden")
+    loadBackground(getRandomBackground(), function(item, img) {
       backgroundCreditsEl.innerHTML = ""
 
       var updated = false
-      // first time, we already have putainde-Tab-background--hidden
-      // so there is no animation, so there is no need to wait for its end.
-      // @todo replace this hacky hack by a smart thing using transitionStart & transitionEnd to update a flag ;)
-      if (!backgroundEl.style.backgroundImage) {
-        updated = updateBackground(item)
+      // first time page loading
+      if (!imgEl) {
+        updated = updateBackground(item, img)
       }
       else {
-        onNextTransitionEnd(backgroundEl, function() {
-          updated = updateBackground(item)
+        imgEl.classList.add("putainde-Tab-background-img--hidden")
+        if (imgBlurEl) {
+          imgBlurEl.classList.add("putainde-Tab-background-imgBlur--hidden")
+        }
+        onNextTransitionEnd(imgEl, function() {
+          updated = updateBackground(item, img)
         })
       }
 
@@ -82,9 +85,57 @@
     })
   }
 
-  function updateBackground(item) {
-    backgroundEl.style.backgroundImage = "url(" + item.url + ")"
-    backgroundEl.classList.remove("putainde-Tab-background--hidden")
+  function updateBackground(item, img) {
+    // prepare DOM
+    backgroundEl.innerHTML = ""
+
+    // get window orientation/ratio
+    var windowOrientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait"
+    var windowRatio = window.innerWidth / window.innerHeight
+
+    // get image orientation/ratio
+    // we cannot get real image orientation by simply using width & height cause of exif rotation
+    // so we have to create the image in the DOM, then get computed width & height
+    imgEl = document.createElement("img")
+    imgEl.setAttribute("src", item.url)
+    imgEl.classList.add("putainde-Tab-background-img") // this class contains the rules to fix the orientation
+    imgEl.classList.add("putainde-Tab-background-img--hidden")
+
+    backgroundEl.appendChild(imgEl)
+    var imgStyle = window.getComputedStyle(imgEl)
+    var imgWidth = parseInt(imgStyle.getPropertyValue("width"))
+    var imgHeight = parseInt(imgStyle.getPropertyValue("height"))
+    var imgOrientation = imgWidth > imgHeight ? "landscape" : "portrait"
+    backgroundEl.removeChild(imgEl)
+    var imgRatio = imgWidth / imgHeight
+
+
+    imgEl.classList.add(imgOrientation === "landscape" ? "putainde-Tab-background-img--landscape" : "putainde-Tab-background-img--portrait")
+    imgEl.classList.add(windowOrientation === "landscape" ? "putainde-Tab-background-img--windowLandscape" : "putainde-Tab-background-img--windowPortrait")
+    imgEl.classList.add(windowRatio < imgRatio ? "putainde-Tab-background-img--ratioSuperiorThanWindow" : "putainde-Tab-background-img--ratioInferiorThanWindow")
+
+    //console.log(windowOrientation, windowRatio, imgOrientation, imgRatio, imgEl.className)
+
+    // when we have a image orientation that is different from the browser orientation
+    // we stop the default "cover" behavior as it might hide too many parts of the picture
+    // so we add a blurry background to keep something cool
+    imgBlurEl = false
+    if (windowOrientation !== imgOrientation) {
+      imgBlurEl = document.createElement("img")
+      imgBlurEl.setAttribute("src", item.url)
+      imgBlurEl.classList.add("putainde-Tab-background-imgBlur")
+      imgBlurEl.classList.add("putainde-Tab-background-imgBlur--hidden")
+      backgroundEl.appendChild(imgBlurEl)
+    }
+
+    // add img after the blurred one to not have to play with z-index :)
+    backgroundEl.appendChild(imgEl)
+
+    // dom ready, begin visual transition
+    imgEl.classList.remove("putainde-Tab-background-img--hidden")
+    if (imgBlurEl) {
+      imgBlurEl.classList.remove("putainde-Tab-background-imgBlur--hidden")
+    }
 
     var credits = item.source ? "Credits: " + item.source : "If you know the source, please let us know."
     var title = item.title ? item.title : credits
@@ -136,8 +187,8 @@
    * @param {Object}   el       dom element to look at
    * @param {Function} callback function to execute at the end
    */
-  function onNextTransitionEnd (el, callback) {
-    onNextAnimationEnd (el, callback, {
+  function onNextTransitionEnd(el, callback) {
+    onNextAnimationEnd(el, callback, {
       transition: "transitionend",
       OTransition: "otransitionend",
       MozTransition: "transitionend",
@@ -169,7 +220,7 @@
    * @param {Function} callback function to execute at the end
    * @param {Object}   animKeys optional anim keys (used for onNextTransitionEnd())
    */
-  function onNextAnimationEnd (el, callback, animKeys) {
+  function onNextAnimationEnd(el, callback, animKeys) {
     var ani
     var anims = animKeys || {
       animation: "animationend",
