@@ -5,7 +5,7 @@
   var loaderEl = document.querySelector(".js-putainde-Tab-loader")
   var backgroundEl = document.querySelector(".js-putainde-Tab-background")
   var backgroundCreditsEl = document.querySelector(".js-putainde-Tab-backgroundCredit")
-  var clockEl = document.querySelector(".js-putainde-Tab-time");
+  var clockEl = document.querySelector(".js-putainde-Tab-time")
   var changeBackgroundEl = document.querySelector(".js-putainde-Tab-changeBackground")
 
   var timeout
@@ -39,7 +39,7 @@
     // well we don"t have a domain for file:/// so we are screwed...
     // any idea ?
     // https://github.com/putaindecode/tab/issues/2
-    // history.pushState({}, "", "");
+    // history.pushState({}, "", "")
   }
 
   /**
@@ -114,7 +114,7 @@
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
    */
   function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
   /**
