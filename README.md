@@ -12,21 +12,61 @@ Set [putaindecode.io/tab/](http://putaindecode.io/tab/) as a url for your new ta
 
 ##### Firefox
 
-Go to `about:config?filter=browser.newtab.url` and set `http://putaindecode.io/tab/`
+Go to `about:config?filter=browser.newtab.url` and set `http://putaindecode.io/tab/` or add in your `user.js`
 
-### Local (customisable)
+```js
+user_pref("browser.newtab.url", "http://putaindecode.io/tab/");
+```
+
+### From a local folder
+
+This project include a command to run this app locally for a given folder
 
 ```bash
 $ git clone https://github.com/putaindecode/tab.git
+$ cd tab
+$ npm install
+$ PUTAINDETAB_PATH="/Users/Shared/Photos" npm run generate-localhost
+$ npm run copy-app
+$ npm run hide-app
 ```
 
-#### Update pictures feed (optional)
+Notes:
 
-Edit `images.js`. If you do this step, be careful of the manifest `cache.appcache` (remove the reference in the html file or adjust it).
+- `generate-localhost` will create an `images.js` & `index.apache.conf` in `$PUTAINDETAB_PATH` by executing `generate-dir-index` then `generate-conf-apache`,
+- `copy-app` will copy the app files (`index.html|js|css`) in `$PUTAINDETAB_PATH`,
+- `hide-app` will copy just hide those file by using `chflags`. Nice to avoid noise in your folder (note that `unhide-app` make the reverse).
+
+
+Now go into [localhost/tab](http://localhost/tab/) & enjoy.
+
+#### Ignore files
+
+You can place in your `$PUTAINDETAB_PATH` folder a `.putaindetabignore` file that will behave like commons ignore file (pattern/wildcard supported).
+Here is an example
+
+```
+To sort*
+Road Trip/2008 Trip with boring people
+```
+
+#### Browser setup
 
 ##### Firefox
 
-Go to `about:config?filter=browser.newtab.url` and set `file:///YOUR/PATH/TO/tab/index.html`
+In your user.js
+
+```js
+// set your new tab url
+user_pref("browser.newtab.url", "http://localhost/tab/");
+
+// enable file:// link on my homepage
+user_pref("capability.policy.policynames", "localfilelinks");
+user_pref("capability.policy.localfilelinks.sites", "http://localhost/");
+user_pref("capability.policy.localfilelinks.checkloaduri.enabled", "allAccess");
+```
+
+<small>[Source](http://kb.mozillazine.org/Firefox_:_Issues_:_Links_to_Local_Pages_Don%27t_Work)</small>
 
 
 ### Options
