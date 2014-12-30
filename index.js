@@ -226,7 +226,6 @@
    */
   function loadCustomisations() {
     var queryString = window.location.search.slice(1)
-    var parameters = {}
 
     queryString.split("&").map(function(declaration) {
       var chunks = declaration.split("=", 2)
