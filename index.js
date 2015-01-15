@@ -4,9 +4,16 @@
 
   var loaderEl = document.querySelector(".js-putainde-Tab-loader")
   var backgroundEl = document.querySelector(".js-putainde-Tab-background")
+  var imgEl
+  var imgBlurEl
   var backgroundCreditsEl = document.querySelector(".js-putainde-Tab-backgroundCredit")
-  var clockEl = document.querySelector(".js-putainde-Tab-time");
+  var clockEl = document.querySelector(".js-putainde-Tab-time")
   var changeBackgroundEl = document.querySelector(".js-putainde-Tab-changeBackground")
+  var madeByEl = document.querySelector(".js-putainde-Tab-footer-madeBy")
+
+  if (window.hostname === "putaindecode.io") {
+    madeByEl.style.display = "block"
+  }
 
   var timeout
 
@@ -39,27 +46,28 @@
     // well we don"t have a domain for file:/// so we are screwed...
     // any idea ?
     // https://github.com/putaindecode/tab/issues/2
-    // history.pushState({}, "", "");
+    // history.pushState({}, "", "")
   }
 
   /**
    * load a random background
    */
   function loadRandomBackground(callback) {
-    loadBackground(getRandomBackground(), function(item) {
-      backgroundEl.classList.add("putainde-Tab-background--hidden")
+    loadBackground(getRandomBackground(), function(item, img) {
       backgroundCreditsEl.innerHTML = ""
 
       var updated = false
-      // first time, we already have putainde-Tab-background--hidden
-      // so there is no animation, so there is no need to wait for its end.
-      // @todo replace this hacky hack by a smart thing using transitionStart & transitionEnd to update a flag ;)
-      if (!backgroundEl.style.backgroundImage) {
-        updated = updateBackground(item)
+      // first time page loading
+      if (!imgEl) {
+        updated = updateBackground(item, img)
       }
       else {
-        onNextTransitionEnd(backgroundEl, function() {
-          updated = updateBackground(item)
+        imgEl.classList.add("putainde-Tab-background-img--hidden")
+        if (imgBlurEl) {
+          imgBlurEl.classList.add("putainde-Tab-background-imgBlur--hidden")
+        }
+        onNextTransitionEnd(imgEl, function() {
+          updated = updateBackground(item, img)
         })
       }
 
@@ -77,9 +85,57 @@
     })
   }
 
-  function updateBackground(item) {
-    backgroundEl.style.backgroundImage = "url(" + item.url + ")"
-    backgroundEl.classList.remove("putainde-Tab-background--hidden")
+  function updateBackground(item, img) {
+    // prepare DOM
+    backgroundEl.innerHTML = ""
+
+    // get window orientation/ratio
+    var windowOrientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait"
+    var windowRatio = window.innerWidth / window.innerHeight
+
+    // get image orientation/ratio
+    // we cannot get real image orientation by simply using width & height cause of exif rotation
+    // so we have to create the image in the DOM, then get computed width & height
+    imgEl = document.createElement("img")
+    imgEl.setAttribute("src", item.url)
+    imgEl.classList.add("putainde-Tab-background-img") // this class contains the rules to fix the orientation
+    imgEl.classList.add("putainde-Tab-background-img--hidden")
+
+    backgroundEl.appendChild(imgEl)
+    var imgStyle = window.getComputedStyle(imgEl)
+    var imgWidth = parseInt(imgStyle.getPropertyValue("width"))
+    var imgHeight = parseInt(imgStyle.getPropertyValue("height"))
+    var imgOrientation = imgWidth > imgHeight ? "landscape" : "portrait"
+    backgroundEl.removeChild(imgEl)
+    var imgRatio = imgWidth / imgHeight
+
+
+    imgEl.classList.add(imgOrientation === "landscape" ? "putainde-Tab-background-img--landscape" : "putainde-Tab-background-img--portrait")
+    imgEl.classList.add(windowOrientation === "landscape" ? "putainde-Tab-background-img--windowLandscape" : "putainde-Tab-background-img--windowPortrait")
+    imgEl.classList.add(windowRatio < imgRatio ? "putainde-Tab-background-img--ratioSuperiorThanWindow" : "putainde-Tab-background-img--ratioInferiorThanWindow")
+
+    //console.log(windowOrientation, windowRatio, imgOrientation, imgRatio, imgEl.className)
+
+    // when we have a image orientation that is different from the browser orientation
+    // we stop the default "cover" behavior as it might hide too many parts of the picture
+    // so we add a blurry background to keep something cool
+    imgBlurEl = false
+    if (windowOrientation !== imgOrientation) {
+      imgBlurEl = document.createElement("img")
+      imgBlurEl.setAttribute("src", item.url)
+      imgBlurEl.classList.add("putainde-Tab-background-imgBlur")
+      imgBlurEl.classList.add("putainde-Tab-background-imgBlur--hidden")
+      backgroundEl.appendChild(imgBlurEl)
+    }
+
+    // add img after the blurred one to not have to play with z-index :)
+    backgroundEl.appendChild(imgEl)
+
+    // dom ready, begin visual transition
+    imgEl.classList.remove("putainde-Tab-background-img--hidden")
+    if (imgBlurEl) {
+      imgBlurEl.classList.remove("putainde-Tab-background-imgBlur--hidden")
+    }
 
     var credits = item.source ? "Credits: " + item.source : "If you know the source, please let us know."
     var title = item.title ? item.title : credits
@@ -114,7 +170,7 @@
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
    */
   function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
   /**
@@ -131,8 +187,8 @@
    * @param {Object}   el       dom element to look at
    * @param {Function} callback function to execute at the end
    */
-  function onNextTransitionEnd (el, callback) {
-    onNextAnimationEnd (el, callback, {
+  function onNextTransitionEnd(el, callback) {
+    onNextAnimationEnd(el, callback, {
       transition: "transitionend",
       OTransition: "otransitionend",
       MozTransition: "transitionend",
@@ -164,7 +220,7 @@
    * @param {Function} callback function to execute at the end
    * @param {Object}   animKeys optional anim keys (used for onNextTransitionEnd())
    */
-  function onNextAnimationEnd (el, callback, animKeys) {
+  function onNextAnimationEnd(el, callback, animKeys) {
     var ani
     var anims = animKeys || {
       animation: "animationend",
@@ -226,7 +282,6 @@
    */
   function loadCustomisations() {
     var queryString = window.location.search.slice(1)
-    var parameters = {}
 
     queryString.split("&").map(function(declaration) {
       var chunks = declaration.split("=", 2)
@@ -251,10 +306,7 @@
    */
   function loadCustomScripts(scriptUrls) {
     scriptUrls.forEach(function(url) {
-      var scriptEl = document.createElement("script")
-      scriptEl.setAttribute("src", url)
-
-      document.body.appendChild(scriptEl)
+      loadJS(url)
     })
   }
 
@@ -263,12 +315,48 @@
    */
   function loadCustomStyles(styleUrls) {
     styleUrls.forEach(function(url) {
-      var linkEl = document.createElement("link")
-      linkEl.setAttribute("rel", "stylesheet")
-      linkEl.setAttribute("href", url)
-
-      document.body.appendChild(linkEl)
+      loadCSS(url)
     })
   }
 
+  // https://github.com/filamentgroup/loadJS/blob/master/loadJS.js
+  /*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */
+  function loadJS(src, cb) {
+    "use strict";
+    var ref = window.document.getElementsByTagName("script")[ 0 ]
+    var script = window.document.createElement("script")
+    script.src = src
+    script.async = true
+    ref.parentNode.insertBefore(script, ref)
+    if (cb) {
+      script.onload = cb
+    }
+    return script
+  }
+
+  // https://github.com/filamentgroup/loadCSS/blob/master/loadCSS.js
+  /*! loadCSS: load a CSS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. Licensed MIT */
+  function loadCSS(href, before, media) {
+    "use strict";
+    // Arguments explained:
+    // `href` is the URL for your CSS file.
+    // `before` optionally defines the element we'll use as a reference for injecting our <link>
+    // By default, `before` uses the first <script> element in the page.
+    // However, since the order in which stylesheets are referenced matters, you might need a more specific location in your document.
+    // If so, pass a different reference element to the `before` argument and it'll insert before that instead
+    // note: `insertBefore` is used instead of `appendChild`, for safety re: http://www.paulirish.com/2011/surefire-dom-element-insertion/
+    var ss = window.document.createElement("link")
+    var ref = before || window.document.getElementsByTagName("script")[0]
+    ss.rel = "stylesheet"
+    ss.href = href
+    // temporarily, set media to something non-matching to ensure it'll fetch without blocking render
+    ss.media = "only x"
+    // inject link
+    ref.parentNode.insertBefore(ss, ref)
+    // set media back to `all` so that the stylesheet applies once it loads
+    setTimeout(function() {
+      ss.media = media || "all"
+    })
+    return ss
+  }
 })(window.putaindeTab)

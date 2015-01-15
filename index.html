@@ -11,7 +11,7 @@
       <!-- http://iconmonstr.com/loading-2-icon/ -->
       <svg class="putainde-Tab-icon putainde-Tab-animate-spin" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path id="loading-2-icon" d="M236,163.117V50h40v113.117c-6.449-1.382-13.139-2.116-20-2.116S242.449,161.735,236,163.117z M227.021,165.509L170.322,67.6l-34.641,20l56.678,97.873C202.248,176.542,214.027,169.667,227.021,165.509z M185.479,192.351 L87.6,135.681l-20,34.641l97.912,56.689C169.672,214.017,176.547,202.24,185.479,192.351z M161,256.001 c0-6.861,0.734-13.551,2.117-20H50v40h113.117C161.734,269.552,161,262.862,161,256.001z M256,351c-5.979,0-11.826-0.559-17.5-1.615 V462h35V349.385C267.828,350.441,261.98,351,256,351z M165.592,285.24L67.6,341.681l20,34.641l98.053-56.475 C176.693,309.98,169.787,298.22,165.592,285.24z M331.289,313.934l96.863,55.893l12.5-21.65l-96.84-55.879 C340.59,300.086,336.361,307.351,331.289,313.934z M290.008,344.725l56.002,97.177l25.98-15l-56.025-97.221 C308.23,335.983,299.484,341.09,290.008,344.725z M192.139,326.334l-56.459,98.068l34.641,20l56.42-98.001 C213.762,342.203,202.002,335.295,192.139,326.334z M350.477,246.001c0.344,3.287,0.523,6.622,0.523,10c0,3.377-0.18,6.713-0.523,10 H462v-20H350.477z M309.602,177.562l56.457-98.197l-12.124-7l-56.436,98.159C301.718,172.577,305.761,174.933,309.602,177.562z  M342.252,216.143l97.266-56.282l-8.5-14.722l-97.26,56.279C337.009,206.04,339.855,210.966,342.252,216.143z"/></svg>
     </div>
-    <div class="js-putainde-Tab-background putainde-Tab-stretch putainde-Tab-background putainde-Tab-background--hidden"></div>
+    <div class="js-putainde-Tab-background putainde-Tab-stretch putainde-Tab-background"></div>
     <div class="putainde-Tab-stretch putainde-Tab-backgroundOverlay"></div>
 
     <div class="putainde-Tab-stretch putainde-Tab-ui">
@@ -19,8 +19,10 @@
 
       <footer class="small putainde-Tab-footer">
         <div class="putainde-Tab-pin putainde-Tab-pin--bottom">
-          <span class="putainde-Tab-footer-txt">Made with ♥︎ by</span>
-          <a class="putainde-Tab-footer-link" href="http://putaindecode.io">putaindecode</a>
+          <span class="putainde-Tab-footer-txt">Made with ♥︎</span>
+          <span class="js-putainde-Tab-footer-madeBy" style="display: none">
+            by <a class="putainde-Tab-footer-link" href="http://putaindecode.io">putaindecode</a>
+          </span>
         </div>
 
         <a class="js-putainde-Tab-backgroundCredit putainde-Tab-backgroundCredit putainde-Tab-pin putainde-Tab-pin--bottom-left"></a>
@@ -45,8 +47,10 @@
     <script src="index.js"></script>
     <script>
       /* global ga */
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-43771806-2','auto');ga('send','pageview');
+      if (window.hostname === "putaindecode.io") {
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-43771806-2','auto');ga('send','pageview');
+      }
     </script>
   </body>
 </html>

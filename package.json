@@ -1,0 +1,32 @@
+{
+  "name": "putainde-tab",
+  "version": "0.1.0",
+  "description": "New tab replacement",
+  "main": "index.js",
+  "scripts": {
+    "generate-conf-apache": "scripts/generate-conf-apache.sh",
+    "generate-dir-index": "node scripts/generate-dir-index.js",
+    "generate-localhost": "npm run generate-dir-index && npm run generate-conf-apache",
+    "copy-app": "cp index.html index.js index.css \"$PUTAINDETAB_PATH\"",
+    "hide-app": "chflags hidden \"$PUTAINDETAB_PATH/index.html\" \"$PUTAINDETAB_PATH/index.js\" \"$PUTAINDETAB_PATH/index.css\" \"$PUTAINDETAB_PATH/images.js\" \"$PUTAINDETAB_PATH/index.apache.conf\"",
+    "unhide-app": "chflags nohidden \"$PUTAINDETAB_PATH/index.html\" \"$PUTAINDETAB_PATH/index.js\" \"$PUTAINDETAB_PATH/index.css\" \"$PUTAINDETAB_PATH/images.js\" \"$PUTAINDETAB_PATH/index.apache.conf\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/putaindecode/tab.git"
+  },
+  "keywords": [
+    "browser",
+    "tab"
+  ],
+  "author": "Maxime Thirouin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/putaindecode/tab/issues"
+  },
+  "homepage": "https://github.com/putaindecode/tab",
+  "devDependencies": {
+    "glob": "^4.3.1",
+    "ignore": "^2.2.15"
+  }
+}

@@ -120,25 +120,64 @@ html{box-sizing:border-box;overflow:auto;border-collapse:collapse}*,:before,:aft
 }
 
 .putainde-Tab-background {
-  background-color: transparent;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  /* for children */
+  position: relative;
+  width: 100%;
+  height: 100%;
 
-  opacity: 1;
-  -webkit-transition: opacity .6s;
-  transition: opacity .6s;
-
-  /* trigger gpu */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  /* avoid glitch */
-  -webkit-backface-visibility: hidden;
+  /* prevent flash where scrollbars appear when playing with children to get real runtime computation for width/height */
+  overflow: hidden;
 }
 
-.putainde-Tab-background--hidden {
-  opacity: 0;
-}
+  .putainde-Tab-background,
+  .putainde-Tab-background-imgBlur,
+  .putainde-Tab-background-img {
+    /* avoid glitch */
+    -webkit-backface-visibility: hidden;
+  }
+
+  .putainde-Tab-background-imgBlur,
+  .putainde-Tab-background-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%) translateZ(0);
+    transform: translateY(-50%) translateX(-50%) translateZ(0);
+
+    /* fix image orientation according to exif data */
+    image-orientation: from-image; /* firefox only */
+
+    /* transition between images */
+    opacity: 1;
+    -webkit-transition: opacity .4s;
+    transition: opacity .4s;
+  }
+
+    .putainde-Tab-background-imgBlur--hidden,
+    .putainde-Tab-background-img--hidden {
+      opacity: 0;
+    }
+
+  /* poor adjustement for generic landscape only */
+  .putainde-Tab-background-imgBlur {
+    min-width: 100%;
+    filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="20" /></filter></svg>#filter');
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+  }
+
+  .putainde-Tab-background-img {}
+
+    /* emulate background cover or contains depending or image/window orientation */
+    .putainde-Tab-background-img--portrait.putainde-Tab-background-img--windowPortrait.putainde-Tab-background-img--ratioSuperiorThanWindow,
+    .putainde-Tab-background-img--portrait.putainde-Tab-background-img--windowLandscape.putainde-Tab-background-img--ratioInferiorThanWindow,
+    .putainde-Tab-background-img--landscape.putainde-Tab-background-img--windowLandscape.putainde-Tab-background-img--ratioSuperiorThanWindow,
+    .putainde-Tab-background-img--landscape.putainde-Tab-background-img--windowPortrait.putainde-Tab-background-img--ratioInferiorThanWindow { height: 100% }
+
+    .putainde-Tab-background-img--portrait.putainde-Tab-background-img--windowPortrait.putainde-Tab-background-img--ratioInferiorThanWindow,
+    .putainde-Tab-background-img--portrait.putainde-Tab-background-img--windowLandscape.putainde-Tab-background-img--ratioSuperiorThanWindow,
+    .putainde-Tab-background-img--landscape.putainde-Tab-background-img--windowLandscape.putainde-Tab-background-img--ratioInferiorThanWindow,
+    .putainde-Tab-background-img--landscape.putainde-Tab-background-img--windowPortrait.putainde-Tab-background-img--ratioSuperiorThanWindow { width: 100% }
 
 .putainde-Tab-backgroundOverlay {
   background-color: transparent;
