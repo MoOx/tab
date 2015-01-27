@@ -225,7 +225,14 @@ window.putaindeTab = {
     {
       url: "backgrounds/39.jpg",
       source: "Trey Ratcliff",
-      sourceUrl: "https://www.flickr.com/photos/stuckincustoms/"
+      sourceUrl: "http://stuckincustoms.smugmug.com/Portfolio/i-QpP2GC2/A",
+      title: "Relaxing in Saint Bathans, New Zealand"
+    },
+    {
+      url: "backgrounds/40.jpg",
+      source: "Gleb Tarro",
+      sourceUrl: "https://500px.com/photo/96883525/landscape-chilie-patagonia-pehoe-dec-by-gleb-tarro",
+      title: "Torres Del Paine, Chilean Patagonia"
     }
   ]
 }
