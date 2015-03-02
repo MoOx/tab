@@ -233,6 +233,12 @@ window.putaindeTab = {
       source: "Gleb Tarro",
       sourceUrl: "https://500px.com/photo/96883525/landscape-chilie-patagonia-pehoe-dec-by-gleb-tarro",
       title: "Torres Del Paine, Chilean Patagonia"
+    },
+    {
+      url: "backgrounds/41.jpg",
+      source: "/u/zapekanka",
+      sourceUrl: "http://i.imgur.com/OyTrZVi.jpg",
+      title: "Sossusvlei salt and clay pan, Namib desert, Namibia"
     }
   ]
 }
