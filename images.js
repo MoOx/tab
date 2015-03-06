@@ -239,6 +239,12 @@ window.putaindeTab = {
       source: "/u/zapekanka",
       sourceUrl: "http://i.imgur.com/OyTrZVi.jpg",
       title: "Sossusvlei salt and clay pan, Namib desert, Namibia"
+    },
+    {
+      url: "backgrounds/42.jpg",
+      source: "",
+      sourceUrl: "http://i.imgur.com/fIdt7Fr.jpg",
+      title: "Wadi Rum Desert, Jordan"
     }
   ]
 }
