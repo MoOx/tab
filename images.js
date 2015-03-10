@@ -245,6 +245,12 @@ window.putaindeTab = {
       source: "",
       sourceUrl: "http://i.imgur.com/fIdt7Fr.jpg",
       title: "Wadi Rum Desert, Jordan"
+    },
+    {
+      url: "backgrounds/43.jpg",
+      source: "David Kaplan",
+      sourceUrl: "http://apod.nasa.gov/apod/ap110202.html",
+      title: "Moon and Venus Over Switzerland"
     }
   ]
 }

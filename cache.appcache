@@ -46,6 +46,8 @@ backgrounds/34.jpg
 backgrounds/39.jpg
 backgrounds/40.jpg
 backgrounds/41.jpg
+backgrounds/42.jpg
+backgrounds/43.jpg
 
 
 # prevent non cached ressources to not load on cached page (even online)
